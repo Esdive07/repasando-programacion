@@ -1,6 +1,6 @@
 package com.example.esme.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,7 +14,7 @@ public class RolModel {
 	private Integer id;
 	private String nombreRol;
 	private String descripcion;
-	private LocalDate fechaCreacion;
-	private LocalDate fechaModificacion;
+	private LocalDateTime fechaCreacion;
+	private LocalDateTime fechaModificacion;
 
 }

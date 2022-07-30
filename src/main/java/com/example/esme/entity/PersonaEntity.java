@@ -1,6 +1,7 @@
 package com.example.esme.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,9 +35,9 @@ public class PersonaEntity {
 	@JsonProperty("fechaNacimiento")
 	private LocalDate birthday;
 	@JsonProperty("fechaCreacion")
-	private LocalDate creationDate;
-	@JsonProperty("fechaNacimiento")
-	private LocalDate modificationDate;
+	private LocalDateTime creationDate;
+	@JsonProperty("fechaModificacion")
+	private LocalDateTime modificationDate;
 
 	@OneToOne
 	@JoinColumn(name = "rol_id")
@@ -45,12 +46,12 @@ public class PersonaEntity {
 
 	@PrePersist
 	public void prePersist() {
-		this.creationDate = LocalDate.now();
-		this.modificationDate = LocalDate.now();
+		this.creationDate = LocalDateTime.now();
+		this.modificationDate = LocalDateTime.now();
 	}
 
 	@PreUpdate
 	public void preUpdate() {
-		this.modificationDate = LocalDate.now();
+		this.modificationDate = LocalDateTime.now();
 	}
 }

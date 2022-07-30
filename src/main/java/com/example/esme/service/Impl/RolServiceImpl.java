@@ -26,8 +26,8 @@ public class RolServiceImpl implements RolService {
 	@Override
 	public RolModel createRol(RolModel rolModel) {
 		RolEntity rolEntity = this.mapperUtil.mapperObject(rolModel, RolEntity.class);
-		RolEntity rolSave = this.rolRepository.save(rolEntity);
-		return this.mapperUtil.mapperObject(rolSave, RolModel.class);
+		RolEntity saveRol = this.rolRepository.save(rolEntity);
+		return this.mapperUtil.mapperObject(saveRol, RolModel.class);
 	}
 
 	@Override
@@ -49,10 +49,13 @@ public class RolServiceImpl implements RolService {
 
 	@Override
 	public RolModel updateRol(RolModel rolModel, Integer id) {
-		rolModel.setId(id);
-		RolEntity rolEntity = this.mapperUtil.mapperObject(rolModel, RolEntity.class);
-		RolEntity rolsave = this.rolRepository.save(rolEntity);
-		return this.mapperUtil.mapperObject(rolsave, RolModel.class);
+		RolModel rolModelSaved = this.getRolById(id);
+		rolModelSaved.setNombreRol(rolModel.getNombreRol());
+		rolModelSaved.setDescripcion(rolModel.getDescripcion());
+
+		RolEntity rolEntity = this.mapperUtil.mapperObject(rolModelSaved, RolEntity.class);
+		RolEntity saveRol = this.rolRepository.save(rolEntity);
+		return this.mapperUtil.mapperObject(saveRol, RolModel.class);
 	}
 
 	@Override
@@ -63,8 +66,8 @@ public class RolServiceImpl implements RolService {
 
 	@Override
 	public RolModel getRolById(Integer id) {
-		RolEntity rolEntity = this.rolRepository.findById(id).get();
+		RolEntity rolEntity = this.rolRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Id no valido"));
 		return this.mapperUtil.mapperObject(rolEntity, RolModel.class);
 	}
-
 }

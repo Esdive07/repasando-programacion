@@ -1,6 +1,6 @@
 package com.example.esme.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,19 +28,19 @@ public class RolEntity {
 	@JsonProperty("descripcion")
 	private String description;
 	@JsonProperty("fechaCreacion")
-	private LocalDate creationDate;
+	private LocalDateTime creationDate;
 	@JsonProperty("fechaModificacion")
-	private LocalDate modificationDate;
+	private LocalDateTime modificationDate;
 
 	@PrePersist
 	public void prePersist() {
-		this.creationDate = LocalDate.now();
-		this.modificationDate = LocalDate.now();
+		this.creationDate = LocalDateTime.now();
+		this.modificationDate = LocalDateTime.now();
 	}
 
 	@PreUpdate
 	public void preUpdate() {
-		this.modificationDate = LocalDate.now();
+		this.modificationDate = LocalDateTime.now();
 	}
 
 }

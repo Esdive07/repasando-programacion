@@ -1,6 +1,7 @@
 package com.example.esme.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -15,9 +16,9 @@ public class PersonaModel {
 	private Integer documento;
 	private String nombre;
 	private String apellidos;
-	private String fechaNacimiento;
-	private LocalDate fechaCreacion;
-	private LocalDate fechaModificacion;
+	private LocalDate fechaNacimiento;
+	private LocalDateTime fechaCreacion;
+	private LocalDateTime fechaModificacion;
 
 	private RolModel rol;
 
