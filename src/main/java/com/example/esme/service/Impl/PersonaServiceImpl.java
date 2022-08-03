@@ -40,19 +40,28 @@ public class PersonaServiceImpl implements PersonaService {
 	@Override
 	public PersonaModel updatePerson(PersonaModel personaModel, Integer id) {
 
-		return null;
+		PersonaModel personaSaved = this.getPersonById(id);
+		personaSaved.setNombre(personaModel.getNombre());
+		personaSaved.setApellidos(personaModel.getApellidos());
+		personaSaved.setDocumento(personaModel.getDocumento());
+		personaSaved.setFechaNacimiento(personaModel.getFechaNacimiento());
+		personaSaved.setRol(personaModel.getRol());
+
+		PersonaEntity personaEntity = this.mapperUtil.mapperObject(personaSaved, PersonaEntity.class);
+		PersonaEntity SavePersona = this.personaRepository.save(personaEntity);
+		return this.mapperUtil.mapperObject(SavePersona, PersonaModel.class);
 	}
 
 	@Override
 	public void detelePerson(Integer id) {
-		// TODO Auto-generated method stub
-
+		this.personaRepository.deleteById(id);
 	}
 
 	@Override
 	public PersonaModel getPersonById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		PersonaEntity personaEntity = this.personaRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("No valido"));
+		return this.mapperUtil.mapperObject(personaEntity, PersonaModel.class);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.example.esme.service.Impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -25,9 +26,12 @@ public class RolServiceImpl implements RolService {
 
 	@Override
 	public RolModel createRol(RolModel rolModel) {
-		RolEntity rolEntity = this.mapperUtil.mapperObject(rolModel, RolEntity.class);
-		RolEntity saveRol = this.rolRepository.save(rolEntity);
-		return this.mapperUtil.mapperObject(saveRol, RolModel.class);
+		return this.getByRolName(rolModel.getNombreRol()).orElseGet(() -> {
+
+			RolEntity rolEntity = this.mapperUtil.mapperObject(rolModel, RolEntity.class);
+			RolEntity saveRol = this.rolRepository.save(rolEntity);
+			return this.mapperUtil.mapperObject(saveRol, RolModel.class);
+		});
 	}
 
 	@Override
@@ -67,7 +71,22 @@ public class RolServiceImpl implements RolService {
 	@Override
 	public RolModel getRolById(Integer id) {
 		RolEntity rolEntity = this.rolRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Id no valido"));
+				.orElseThrow(() -> new IllegalArgumentException("Id no valido,no existe"));
 		return this.mapperUtil.mapperObject(rolEntity, RolModel.class);
 	}
+
+//	public void getByDescription(String description) {
+//		Optional<RolEntity> rolEntity = this.rolRepository.findBydescription(description);
+//
+//		if (rolEntity.isPresent()) {
+//			throw new IllegalArgumentException("ya existe este nombre");
+//		}
+//	}
+
+	private Optional<RolModel> getByRolName(String rolName) {
+		Optional<RolEntity> rolEntity = this.rolRepository.findByRoleName(rolName);
+
+		return rolEntity.map(value -> this.mapperUtil.mapperObject(value, RolModel.class));
+	}
+
 }

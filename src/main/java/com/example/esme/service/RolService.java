@@ -16,4 +16,5 @@ public interface RolService {
 
 	public RolModel getRolById(Integer id);
 
+
 }

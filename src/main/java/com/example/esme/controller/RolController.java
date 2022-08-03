@@ -52,4 +52,5 @@ public class RolController {
 	public ResponseEntity<RolModel> getRolById(@PathVariable Integer id) {
 		return ResponseEntity.ok(this.rolService.getRolById(id));
 	}
+
 }
