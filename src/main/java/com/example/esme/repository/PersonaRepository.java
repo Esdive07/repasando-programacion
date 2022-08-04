@@ -8,5 +8,5 @@ import com.example.esme.entity.PersonaEntity;
 
 public interface PersonaRepository extends JpaRepository<PersonaEntity, Integer> {
 
-	Optional<PersonaEntity> findByDocument(String document);
+	Optional<PersonaEntity> findByDocument(Integer document);
 }

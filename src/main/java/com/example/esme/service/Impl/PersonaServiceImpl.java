@@ -1,6 +1,7 @@
 package com.example.esme.service.Impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -25,9 +26,13 @@ public class PersonaServiceImpl implements PersonaService {
 
 	@Override
 	public PersonaModel createPerson(PersonaModel personaModel) {
-		PersonaEntity personaEntity = this.mapperUtil.mapperObject(personaModel, PersonaEntity.class);
-		PersonaEntity savePerson = this.personaRepository.save(personaEntity);
-		return this.mapperUtil.mapperObject(savePerson, PersonaModel.class);
+
+		return this.getPersonByDocument(personaModel.getDocumento()).orElseGet(() -> {
+			PersonaEntity personaEntity = this.mapperUtil.mapperObject(personaModel, PersonaEntity.class);
+			PersonaEntity savePerson = this.personaRepository.save(personaEntity);
+			return this.mapperUtil.mapperObject(savePerson, PersonaModel.class);
+		});
+
 	}
 
 	@Override
@@ -60,8 +65,12 @@ public class PersonaServiceImpl implements PersonaService {
 	@Override
 	public PersonaModel getPersonById(Integer id) {
 		PersonaEntity personaEntity = this.personaRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("No valido"));
+				.orElseThrow(() -> new IllegalArgumentException("No valido, el id no existe"));
 		return this.mapperUtil.mapperObject(personaEntity, PersonaModel.class);
 	}
 
+	public Optional<PersonaModel> getPersonByDocument(Integer document) {
+		Optional<PersonaEntity> personaEntity = this.personaRepository.findByDocument(document);
+		return personaEntity.map(value -> this.mapperUtil.mapperObject(value, PersonaModel.class));
+	}
 }
