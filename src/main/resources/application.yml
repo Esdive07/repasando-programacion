@@ -10,3 +10,10 @@ spring:
   h2:
     console:
       enabled: true
+
+---
+#Aqui va la informaciòn de los puertos
+server:
+  port: 8090
+  servlet:
+    context-path: /repaso 
