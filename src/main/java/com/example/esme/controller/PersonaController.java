@@ -42,7 +42,7 @@ public class PersonaController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> detelePerson(@PathVariable Integer id) {
+	public ResponseEntity<Void> deletePerson(@PathVariable Integer id) {
 		this.personaService.detelePerson(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
