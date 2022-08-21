@@ -86,4 +86,45 @@ public class RolServiceTest {
 		List<RolModel> response = this.rolserServiceImpl.getAllRol();
 		assertNotNull(response);
 	}
+
+	@Test
+	public void updateRolTestOk() {
+
+		RolModel rolModel = new RolModel();
+		RolEntity rolEntity = new RolEntity();
+		Integer id = 1;
+
+		Optional<RolEntity> rolentityOptional = Optional.of(rolEntity);
+
+		when(this.rolRepository.findById(id)).thenReturn(rolentityOptional);
+
+		when(this.mapperUtil.mapperObject(rolModel, RolEntity.class)).thenReturn(rolEntity);
+		when(this.rolRepository.save(rolEntity)).thenReturn(rolEntity);
+		when(this.mapperUtil.mapperObject(rolEntity, RolModel.class)).thenReturn(rolModel);
+		RolModel response = this.rolserServiceImpl.updateRol(rolModel, id);
+		assertNotNull(response);
+	}
+
+//	@Test
+//	public void updateRolTestError() {
+//		RolModel rolModel = new RolModel();
+//		RolEntity rolEntity = new RolEntity();
+//		rolEntity.setIdx(1);
+//		Integer id = 1;
+//
+//		Optional<RolEntity> rolentityOptional = Optional.empty();
+//		when(this.rolRepository.findById(id)).thenReturn(rolentityOptional);
+//
+//		when(this.rolserServiceImpl.updateRol(rolModel, id)).thenReturn(rolModel);
+//		RolModel response = this.rolserServiceImpl.createRol(rolModel);
+//		assertNull(response);
+//
+//	}
+
+	@Test
+	public void deleteRolTest() {
+		Integer id = 1;
+
+		this.rolserServiceImpl.deleteRol(id);
+	}
 }
