@@ -75,14 +75,6 @@ public class RolServiceImpl implements RolService {
 		return this.mapperUtil.mapperObject(rolEntity, RolModel.class);
 	}
 
-//	public void getByDescription(String description) {
-//		Optional<RolEntity> rolEntity = this.rolRepository.findBydescription(description);
-//
-//		if (rolEntity.isPresent()) {
-//			throw new IllegalArgumentException("ya existe este nombre");
-//		}
-//	}
-
 	private Optional<RolModel> getByRolName(String rolName) {
 		Optional<RolEntity> rolEntity = this.rolRepository.findByRoleName(rolName);
 
