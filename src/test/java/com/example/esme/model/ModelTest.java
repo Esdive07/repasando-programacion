@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class modelTest {
+public class ModelTest {
 
 	private RolModel rolModel;
 	private PersonaModel personaModel;

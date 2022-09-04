@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 import com.example.esme.entity.PersonaEntity;
 import com.example.esme.model.PersonaModel;
 import com.example.esme.repository.PersonaRepository;
-import com.example.esme.service.Impl.PersonaServiceImpl;
+import com.example.esme.service.impl.PersonaServiceImpl;
 import com.example.esme.util.MapperUtil;
 
 public class PersonaServideTest {
@@ -119,5 +119,6 @@ public class PersonaServideTest {
 	public void detelePersonTest() {
 		Integer id = 1;
 		this.personaServiceImpl.detelePerson(id);
+		assertNotNull(id);
 	}
 }

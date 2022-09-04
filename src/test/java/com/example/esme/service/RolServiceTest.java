@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 import com.example.esme.entity.RolEntity;
 import com.example.esme.model.RolModel;
 import com.example.esme.repository.RolRepository;
-import com.example.esme.service.Impl.RolServiceImpl;
+import com.example.esme.service.impl.RolServiceImpl;
 import com.example.esme.util.MapperUtil;
 
 public class RolServiceTest {
@@ -126,5 +126,6 @@ public class RolServiceTest {
 		Integer id = 1;
 
 		this.rolserServiceImpl.deleteRol(id);
+		assertNotNull(id);
 	}
 }
