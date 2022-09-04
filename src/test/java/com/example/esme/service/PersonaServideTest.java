@@ -108,13 +108,6 @@ public class PersonaServideTest {
 		assertNotNull(response);
 	}
 
-//	@Test
-//	public void updateNotSuccesPersonTest() {
-//		PersonaModel personaModel = new PersonaModel();
-//		Integer id = 1;
-//		
-//	}
-
 	@Test
 	public void detelePersonTest() {
 		Integer id = 1;

@@ -56,6 +56,7 @@ public class PersonaControllerTest {
 	public void detelePersonTest() {
 		Integer id = 1;
 		this.personaController.deletePerson(id);
+		assertNotNull(id);
 	}
 
 	@Test

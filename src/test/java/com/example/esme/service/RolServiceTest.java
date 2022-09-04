@@ -105,22 +105,6 @@ public class RolServiceTest {
 		assertNotNull(response);
 	}
 
-//	@Test
-//	public void updateRolTestError() {
-//		RolModel rolModel = new RolModel();
-//		RolEntity rolEntity = new RolEntity();
-//		rolEntity.setIdx(1);
-//		Integer id = 1;
-//
-//		Optional<RolEntity> rolentityOptional = Optional.empty();
-//		when(this.rolRepository.findById(id)).thenReturn(rolentityOptional);
-//
-//		when(this.rolserServiceImpl.updateRol(rolModel, id)).thenReturn(rolModel);
-//		RolModel response = this.rolserServiceImpl.createRol(rolModel);
-//		assertNull(response);
-//
-//	}
-
 	@Test
 	public void deleteRolTest() {
 		Integer id = 1;

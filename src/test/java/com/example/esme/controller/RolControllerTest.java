@@ -58,6 +58,7 @@ public class RolControllerTest {
 	public void deleteRolTest() {
 		Integer id = 1;
 		this.rolController.deleteRol(id);
+		assertNotNull(id);
 	}
 
 	@Test
